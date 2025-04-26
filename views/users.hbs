@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style/style.css">
+    <link type="image/x-icon" href="img/click.png" rel="shortcut icon">
+    <link type="Image/x-icon" href="img/click.png" rel="icon">
+
+    <style>
+        
+ 
+       
+table{
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:normal;
+  font-style: normal;
+}
+        form{
+             width: 100px;
+        }
+        {{!-- input{
+            width: 110px;
+            background-color: red;
+            border: 1px solid black;
+        } --}}
+        ul{
+            padding: 0;
+            margin: 0;
+        }
+  
+
+     tr{
+        text-align: center;
+     }
+    th{
+        
+    font-weight: bold;
+	padding: 5px;
+	background: #efefef;
+	border: 1px solid #dddddd;
+    }
+    table{
+    
+	border: 1px solid #eee;
+
+
+	width: 100%;
+
+	margin-bottom: 20px;
+    }   
+    td{
+
+    
+	border: 1px solid #eee;
+	
+    }
+    tbody tr:nth-child(odd){
+	background: #fff;
+    }
+    tbody tr:nth-child(even){
+	background: #F7F7F7;
+    }
+    
+    
+    table button,input{
+    padding: 15px 15px
+    }
+  
+ 
+    
+ 
+  
+    
+    </style>
+</head>
+<body>
+ <header><a href="/keys"><span> Админ-панель</span></a></header>
+      
+<div class="main">
+   <nav class="sidebar">
+  
+    <ul>
+        <li><a href="/keys"> <img src="/img/key.svg" alt="" class="navImg" ><span class="navText">Ключи</span></a></li>
+        <li><a href="/users"> <img src="/img/user.svg" alt="" class="navImg"> <span class="navText">Пользователи</span> </a></li>
+     
+    </ul>
+   </nav>
+
+    <div class="content">
+    <h1>Список пользователей</h1>
+   
+     <table>
+        <tr>
+        <th>
+            ID
+        </th>
+        <th >
+            Пользователь
+        </th>
+      
+
+    </tr>
+    {{#each users}}
+    
+    <tr>
+        <td> {{this.Id}}</td>
+        <td style="text-align: left;"> {{this.username}}</td>
+    </tr>
+     {{/each }}
+    </table>
+    </div>
+    
+     <footer></footer>
+</div>
+</body>
+</html>

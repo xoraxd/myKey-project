@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация ключа</title>
+</head>
+<style>
+    input{
+        height: 20px;
+        min-width: 100px;
+    }
+</style>
+<body>
+    <header><a href="/keys"><span> Админ-панель</span></a></header>
+    <div class="main">
+        <nav class="sidebar">
+        <ul>
+            <li><a href="/keys"> <img src="/img/key.svg" alt="" class="navImg" ><span class="navText">Ключи</span></a></li>
+            <li><a href="/users"> <img src="/img/user.svg" alt="" class="navImg"> <span class="navText">Пользователи</span> </a></li>
+        </ul>
+        </nav>
+  
+    <div class="content"> 
+        <h1>Добавление ключа</h1>
+        <form method="POST" id="getQR" class="getQR">
+        <div class="formContent">
+        <label>Улица</label><br>
+        <input class="street" id="text" type="text" name="nameKey" class="field"/><br><br>
+        <label>№ ячейки</label><br>
+        <input class="num" name="number" type="number" class="field"/><br><br>
+        <div class="Key">
+        <input type="submit" value="Сохранить"/>
+        <input type="button" value="Получить QR код" id="generateQRCode" /> <!-- Новая кнопка -->
+        <input type="button" value="Скачать QR код" id="downloadQRCode" style="display:none;" />
+        </div>
+          </div> <div id="qrcode" class="qrcode"></div>
+    </div>
+       
+        </div>
+    </form>
+       
+    </div>
+   
+
+    <script>
+        var qrcode = new QRCode("qrcode",{
+             width: 300,
+             height: 300,
+             correctLevel : QRCode.CorrectLevel.M
+        })
+
+        function makeCode() {		
+            var elText = document.getElementById("text");
+            if (!elText.value) {
+                alert("Введите текст для генерации QR кода");
+                elText.focus();
+                return;
+            }
+            qrcode.makeCode(elText.value);
+            document.getElementById("downloadQRCode").style.display = "inline"; // Показываем кнопку скачивания
+        }
+
+        // Обработчик события для кнопки "Получить QR код"
+        $("#generateQRCode").on("click", function(s) {
+           
+            makeCode(); // Генерируем QR код
+        });
+        $("#downloadQRCode").on("click", function() {
+
+            var canvas = document.querySelector("canvas");
+
+            if (canvas) {
+                var link = document.createElement('a');
+                link.href = canvas.toDataURL("image/png"); // Получаем URL изображения
+                link.download = "qrcode.png"; // Имя файла для скачивания
+                link.click(); // Имитируем клик по ссылке
+
+            } else {
+
+                alert("Сначала сгенерируйте QR код!");
+
+            }
+
+        });
+        // Обработчик события для нажатия клавиши Enter
+        $("#text").on("keydown", function(e) {
+            if (e.keyCode == 13) {
+                makeCode(); // Генерируем QR код при нажатии Enter
+            }
+        });
+    </script>
+</body>
+</html>
