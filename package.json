@@ -6,6 +6,10 @@
     "express": "^4.21.2",
     "hbs": "^4.2.0",
     "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.13.0"
+    "mysql2": "^3.13.0",
+    "main":"index.js",
+    "scripts": {
+      "start":"node index"
+    }
   }
 }
