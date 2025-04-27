@@ -1,9 +1,13 @@
+require("dotenv").config()
+console.log(process.env.DB_USERNAME);
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mysql = require('mysql2');
 const path = require('path');
 const app = express();
+
 const port = process.env.PORT || 3000;
 
 
@@ -25,10 +29,10 @@ app.set('views', path.join(__dirname, 'views'));
 // Подключение к MySQL
 const connection = mysql.createPool({
     connectionLimit: 10,
-    user:'root',
-    host:'localhost',
-    password:'root',
-    database:'loginsystem'
+    user:process.env.DB_USERNAME,
+    host:process.env.DB_HOST,
+    password:process.env.DB_PASSWORD,
+    database:process.env.DB_DBNAME
 });
 
 ///////////////////////////////////////////////////// Сайт
