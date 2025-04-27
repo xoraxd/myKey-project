@@ -212,7 +212,7 @@ app.post('/login',async(req,res)=>{
 })
 app.get('/key/data',(req,res)=>{
   try{  
-    const query = `select * from allKeys`
+    const query = `select * from allkeys`
 
     connection.query(query,(err,results)=>{
     if(err){
